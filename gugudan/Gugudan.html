@@ -1,0 +1,75 @@
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+        <script crossorigin src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    </head>
+    <body>
+        <!-- 리액트는 렌더링할 root가 기본적으로 있어야 함 -->
+        <div id="root"></div>
+        <script type="text/babel">
+            const e = React.createElement; // html 태그를 만든다.
+            
+            // 컴포넌트 생성
+            class GuGuDan extends React.Component {
+                // 컴포넌트가 실행될 때 제일 먼저 실행 됨
+                constructor(props) {
+                    super(props);
+                    this.state = {
+                        first : Math.ceil(Math.random() * 9),
+                        second : Math.ceil(Math.random() * 9),
+                        value : '',
+                        result : ''
+                    };
+                }
+
+                onSubmit = (e) => {
+                    e.preventDefault();
+                    if (parseInt(this.state.value) === this.state.first * this.state.second) {
+                        this.setState((prev) => {
+                            return{
+                                result : prev.first + ' x ' + prev.second + ' = ' + prev.value + ' 정답',
+                                first : Math.ceil(Math.random() * 9),
+                                second : Math.ceil(Math.random() * 9),
+                                value : ''
+                            }
+                        });
+                        input.focus();
+                    } else {
+                        this.setState({
+                            result : '땡',
+                            value : ''
+                        });
+                        input.focus();
+                    }
+                };
+
+                onChange = (e) => {
+                   this.setState({value : e.target.value});
+                };
+
+                input;
+                onRefInput = (c) => { this.input = c; };
+
+                // 화면에 어떻게 표시할지 결정
+                render() {
+                  return (
+                    <React.Fragment>
+                        <div>{this.state.first} 곱하기 {this.state.second}는?</div>
+                        <form onSubmit={this.onSubmit}>
+                            <input ref={this.opRefInput} type="number" value={this.state.value} onChange={this.onChange} />
+                            <button>입력!</button>
+                        </form>
+                        <div>{this.state.result}</div>
+                    </React.Fragment>
+                  );
+                }
+            }
+        </script>
+        <script type="text/babel">
+            //선언한 컴포넌트를 그린다.
+            ReactDOM.render(<GuGuDan />, document.querySelector('#root'));
+        </script>
+    </body>
+</html>

@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+        <script crossorigin src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    </head>
+    <body>
+        <!-- 리액트는 렌더링할 root가 기본적으로 있어야 함 -->
+        <div id="root"></div>
+        <script type="text/babel">
+            const e = React.createElement; // html 태그를 만든다.
+            
+            // 컴포넌트 생성
+            class LikeButton extends React.Component {
+                // 컴포넌트가 실행될 때 제일 먼저 실행 됨
+                constructor(props) {
+                    super(props);
+                    // 바뀔 여지가 있는 부분
+                    this.state = {
+                        liked : false,
+                    };
+                }
+                // 화면에 어떻게 표시할지 결정
+                render() {
+                    // JSX (JS + XML) -> babel이 지원해줌. createElement와 같다?
+                    return <button type="submit" onClick={() => {this.setState({ liked : true })}}>
+                        {this.state.liked === true ? '좋아요 누름' : '좋아요'}
+                    </button>;
+
+                    // 해당 태그를 만들겠다고 선언
+                    // <button onclick="onclick" type="submit">Like</button>
+                    // return e('button', 
+                    // {onClick : () => { this.setState({ liked : true })}, type : 'submit'},
+                    //  this.state.liked === true ? 'Liked' : 'Like');
+                }
+            }
+        </script>
+        <script type="text/babel">
+            //선언한 컴포넌트를 그린다.
+            ReactDOM.render(<LikeButton />, document.querySelector('#root'));
+            // ReactDOM.render(e(LikeButton), document.querySelector('#root'));
+        </script>
+    </body>
+</html>

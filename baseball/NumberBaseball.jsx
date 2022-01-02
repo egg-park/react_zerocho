@@ -74,6 +74,13 @@ const NumberBaseball = memo(() => {
       </form>
       <div>시도: {tries.length}</div>
       <ul>
+          {/* {(() => {
+            const array = [];
+            for (let i = 0; i < tries.length; i++) {
+              array.push(<Try key={`${i +1}차 시도 :`} tryInfo={v} index={i} />);
+            }
+            return [];
+          })()} */}
           {tries.map((v, i) => {
               return (
                 <Try key={`${i +1}차 시도 :`} tryInfo={v} index={i} />

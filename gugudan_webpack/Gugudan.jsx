@@ -12,13 +12,13 @@ const Gugudan = () => {
     const onChange = (e) => {
         setValue(e.target.value);
     };
-
+ 
     const onSubmit = (e) => {
         e.preventDefault();
         if (parseInt(value) === first * second) {
             setResult('정답 : ' + value);
-            setFirst(useState(Math.ceil(Math.random() * 9)));
-            setSecond(useState(Math.ceil(Math.random() * 9)));
+            setFirst(Math.ceil(Math.random() * 9));
+            setSecond(Math.ceil(Math.random() * 9));
             setValue('');
             inputRef.current.focus();
         } else {

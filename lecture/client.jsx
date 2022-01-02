@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 
-import WordRelay from './RenderTest';
+import WordRelay from './ResponseCheck';
 
 ReactDom.render(<WordRelay />, document.querySelector('#root'));

@@ -22,18 +22,19 @@
                 }
                 // 화면에 어떻게 표시할지 결정
                 render() {
-                    // JSX (JS + XML) -> babel이 지원해줌
-                    return (
-                        <button type="submit" onClick={() => {this.setState({ liked : true })}}>
-                            {this.state.liked === true ? '좋아요 누름' : '좋아요'}
-                        </button>
+                    // 해당 태그를 만들겠다고 선언
+                    return e(
+                        'button', 
+                        {onClick : () => { this.setState({ liked : true })},
+                        type : 'submit'}, 
+                        this.state.liked === true ? 'Liked' : 'Like'
                     );
                 }
             }
         </script>
         <script type="text/babel">
             //선언한 컴포넌트를 그린다.
-            ReactDOM.render(<LikeButton />, document.querySelector('#root'));
+            ReactDOM.render(e(LikeButton), document.querySelector('#root'));
         </script>
     </body>
 </html>
